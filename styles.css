@@ -106,18 +106,40 @@ header {
 
 @media screen and (max-width:600px) {
 	header {
-		width: 1280px;
+		width: 100%;
 	}
 	
+	
 	#character-area {
-		margin: 0 80px
+		width: 100%;
+		margin: 0 auto;
+		
+	}
+	
+	#character-area img {
+		width: 120px;
+		height: 120px;
+	}
+	
+	#sakura img {
+		top: 160px;
+		left: 20px;
+	}
+	
+	#shuma img {
+		top: 50px;
+		left: 140px;
 	}
 	
 	#chara-text {
-		margin: 0 160px
+		width: 280px;
+	}
+	
+	#chara-text p {
+		margin: 0;
 	}
 	
 	#app {
-		margin: 0 80px
+		width: 100%
 	}
 }
