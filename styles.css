@@ -137,6 +137,7 @@ header {
 	
 	#chara-text p {
 		margin: 0;
+		font-size: 10px;
 	}
 	
 	#app {
