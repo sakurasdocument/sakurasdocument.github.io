@@ -36,12 +36,12 @@
         this.newItem = '';
       },
       deleteItem: function(index) {
-        if (confirm('are you sure?')) {
+        if (confirm('ホントに終わった?')) {
           this.todos.splice(index, 1);
         }
       },
       purge: function() {
-        if (!confirm('delete finished?')) {
+        if (!confirm('全部消しちゃうよ?')) {
           return;
         }
         this.todos = this.remaining;
