@@ -44,8 +44,87 @@
       <input type="submit" value="Add">
     </form>
   </div>
+	
+	<div id="target">
+	</div>
 <script  src = "jquery-3.4.1.min.js"></script>
 <script src = "https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyAvBex3D-LPGNliK2Hi7grSS-mySsFdAaM&callback=initMap" async defer></script>
 <script src="main.js"></script>
+<script>
+    function initMap() {
+      'use strict';
+			
+			function success(pos) {
+				//console.log(pos);
+				//const lat = pos.coords.latitude;
+				//const lng = pos.coords.longitude;
+				
+			let target = document.getElementById('target');
+      let map;
+      let center = {
+				//lat: 36.6516868, lng: 140.0273977
+				lat: pos.coords.latitude,
+				lng: pos.coords.longitude,
+			};
+			let marker;
+
+      map = new google.maps.Map(target, {
+        center: center,
+        zoom: 15
+      });
+			
+			marker = new google.maps.Marker({
+				position: center,
+				map: map,
+				title: 'home',
+				icon: {
+					url: 'sakura-dash.GIF',
+					scaledSize: new google.maps.Size(80, 80)
+				}
+			});
+			}
+			
+			navigator.geolocation.getCurrentPosition(success);
+			
+
+      /*let target = document.getElementById('target');
+      let map;
+      let home = {
+				//lat: 36.6516868, lng: 140.0273977
+				lat: coords.latitude,
+				lng: coords.longitude,
+			};
+			let marker;
+
+      map = new google.maps.Map(target, {
+        center: home,
+        zoom: 15
+      });
+			
+			marker = new google.maps.Marker({
+				position: home,
+				map: map,
+				title: 'home',
+				icon: {
+					url: 'sakura-dash.GIF',
+					scaledSize: new google.maps.Size(80, 80)
+				}
+			});
+			
+			/*map.addListener('click', function(e) {
+				console.log(e.latLng.lat());
+				console.log(e.latLng.lng());
+				console.log(e.latLng.toString());
+				this.panTo(e.latLng);
+			});
+			*/
+			//refresh();
+    }
+	function refresh() {
+		setTimeout(initMap, 1000);
+	}
+	
+  </script>
 </body>
 </html>

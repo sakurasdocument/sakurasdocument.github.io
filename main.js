@@ -99,6 +99,7 @@
 	}
 	
 	changeBackground();
+	
 	 /*
 	const pena2 =function() {
 	let i = 0;
@@ -122,8 +123,6 @@
 	pena2();
 	
 	*/
-	
-	
 	
 	
 		

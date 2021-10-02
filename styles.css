@@ -104,6 +104,12 @@ header {
   float: right;
 }
 
+#target {
+	width: 800px;
+	height: 400px;
+}
+
+
 @media screen and (max-width:600px) {
 	header {
 		width: 100%;
@@ -144,4 +150,9 @@ header {
 		width: 100%;
 		margin-bottom: 50px;
 	}
+	
+	#target {
+	  width: 100%;
+		margin: auto;
+  }
 }
