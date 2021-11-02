@@ -28,13 +28,13 @@
 				this.newItem = '';
 			},
 			deleteItem: function(index) {
-				if(confirm('are you sure?')) {
+				if(confirm('ホントに終わった?')) {
 					
 				  this.todos.splice(index, 1);
 				}
 			},
 			purge: function(index) {
-				if(!confirm('delete finished?')) {
+				if(!confirm('まっ☆こ〜んなトコだね！')) {
 					return;
 				}
 				this.todos = this.remaining;
