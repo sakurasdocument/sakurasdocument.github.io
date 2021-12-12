@@ -9,6 +9,7 @@
 	<header class="header">
 		<div class="container">
 		  <div class="logo">
+				<img src="sakurapng.png">
 		  	<P>Sakura`s Document</P>
 		  </div>
 		</div>
@@ -65,18 +66,18 @@
 				const lng = pos.coords.longitude;
 				let target = document.getElementById('target');
       let map;
-      let tokyo = {lat: lat, lng: lng};
+      let center = {lat: lat, lng: lng};
 			let marker;
 
       map = new google.maps.Map(target, {
-        center: tokyo,
+        center: center,
         zoom: 16,	
       });
 			
 			marker = new google.maps.Marker({
-				position: tokyo,
+				position: center,
 				map: map,
-				title: 'tokyo',
+				title: 'sakura',
 				icon: {
 					url: 'sakuraWin.gif',
 					scaledSize: new google.maps.Size(120, 120)

@@ -17,11 +17,12 @@ h1, h2, h3, h4, p {
 header {
 	background-color: cornflowerblue;
 	height: 65px;
-	
 }
 
-.logo {
-	line-height: 65px;
+
+.logo img {
+	height: 65px;
+  float: left;
 }
 
 header .logo p {
@@ -29,6 +30,9 @@ header .logo p {
 	font-family: 'Bitter', serif;
 	font-weight: bold;
 	font-size: 30px;
+	width: 300px;
+	float: left;
+	line-height: 65px;
 }
 
 .main {
