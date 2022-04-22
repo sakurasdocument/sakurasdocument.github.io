@@ -1,0 +1,408 @@
+<html>
+<head>
+	
+	<meta charset="utf-8">
+
+<script language="JavaScript">
+<!--//Copyright (C) WEST MiRa http://www.west-mira.jp
+
+	my_title = new Array();
+	my_property = new Array();
+	my_kind = new Array();
+	my_value = new Array();
+
+
+	//メールアドレスを指定する
+	mail_address = 'amisuke0314@yahoo.co.jp';
+
+	//メールタイトルを指定する
+	mail_title = '感想メール';
+
+
+	/**************************************************
+	フォームデータ
+	**************************************************/
+
+	/**************************************************
+	入力データの属性について
+	0→未入力を許可。入力値の制限無し。
+	1→入力必須。入力値の制限無し。
+	2→未入力を許可。半角数値のみ入力許可。
+	3→入力必須。半角数値のみ入力許可。
+	4→未入力を許可。半角英数字のみ入力許可。
+	5→入力必須。半角英数字のみ入力許可。
+	6→未入力を許可。半角文字のみ入力許可。
+	7→入力必須。半角文字のみ入力許可。
+	上記7種類があります。
+	指定したい属性を下記の各項目のmy_propertyで指定して下さい。
+	**************************************************/
+
+	/**************************************************
+	入力データの種類について
+	0→テキスト入力（短文用）
+	1→ラジオボタン
+	2→セレクトボックス
+	3→テキスト入力（長文用）
+	上記4種類があります。
+	指定したい属性を下記の各項目のmy_kindで指定して下さい。
+	**************************************************/
+
+	/**************************************************
+	選択データの設定について
+	入力データ（my_kind）にてラジオボタン、セレクトボックスを
+	選択した場合、各my_valueにて選択肢を設定して下さい。
+	この時、必ず各選択肢を「,」で区切って下さい。
+	「,」は半角で記入して下さい。
+	例）my_value[0] = "無回答,男,女";
+	**************************************************/
+
+	//項目名1を入力
+	my_title[0]    = "名前";
+	my_property[0] = 0;
+	my_kind[0]     = 0;
+	my_value[0]    = "";
+
+	//項目名2を入力
+	my_title[1]    = "メール";
+	my_property[1] = 0;
+	my_kind[1]     = 0;
+	my_value[1]    = "";
+
+	//項目名3を入力
+	my_title[2]    = "URL";
+	my_property[2]=  0;
+	my_kind[2]     = 0;
+	my_value[2]    = "";
+
+	//項目名4を入力
+	my_title[3]="年齢";
+	my_property[3] = 0;
+	my_kind[3]     = 2;
+	my_value[3]    = "無回答,10代,20代,30代,40代,50代,60代,70代,80代";
+
+	//項目名5を入力
+	my_title[4]="性別";
+	my_property[4] = 1;
+	my_kind[4]     = 1;
+	my_value[4]    = "無回答,男,女";
+
+	//項目名6を入力
+	my_title[5]="デザイン性";
+	my_property[5] = 1;
+	my_kind[5]     = 1;
+	my_value[5]    = "良い,悪い,普通";
+
+	//項目名7を入力
+	my_title[6]="内容について";
+	my_property[6] = 1;
+	my_kind[6]     = 1;
+	my_value[6]    = "良い,悪い,普通";
+
+	//項目名8を入力
+	my_title[7]="このHPを再訪したいと思いますか？";
+	my_property[7] = 1;
+	my_kind[7]     = 1;
+	my_value[7]    = "はい,いいえ,どちらでもない";
+
+	//項目名9を入力
+	my_title[8]    = "コメント";
+	my_property[8] = 0;
+	my_kind[8]     = 3;
+	my_value[8]    = "";
+
+
+	/**************************************************
+	ウィンドウデザイン
+	**************************************************/
+
+	//ウィンドウの背景色を指定
+	bg_color = '#ffffff';
+
+	//ウィンドウの文字色を指定
+	text_color = '#000000';
+
+	//ウィンドウのリンク色を指定
+	link_color = '#0000ff';
+
+	//ウィンドウのvlink色を指定
+	vlink_color = '#9932cc';
+
+	//ウィンドウのalink色を指定
+	alink_color = '#ff00ff';
+
+
+	/**************************************************
+	テーブルデザイン
+	**************************************************/
+
+	//テーブルの位置
+	//left、center、rightから選択
+	table_align = 'left';
+
+	//テーブルの項目名の位置
+	//left、center、rightから選択
+	table_th_align = 'left';
+
+
+	//テーブルの枠
+	table_border = 0;
+
+	//テーブルのセル同士の隙間
+	table_cellspacing = 0;
+
+	//テーブルのセルの隙間
+	table_cellpadding = 5;
+
+	//テーブルの背景色を指定
+	table_bgcolor = '#ffffff';
+
+	//テーブルのthの背景色を指定
+	th_bgcolor = '#ffd9b7';
+
+	//テーブルのthの文字色を指定
+	th_textcolor = '#622f00';
+
+	//テーブルのthの文字サイズを指定
+	th_textsize = '3';
+
+
+	//テーブルのtdの背景色を指定
+	td_bgcolor = '#fff795';
+
+	//テーブルのtdの文字色を指定
+	td_textcolor = '#645c00';
+
+	//テーブルのtdの文字サイズを指定
+	td_textsize = '3';
+
+
+	/**************************************************
+	確認ウィンドウデザイン
+	**************************************************/
+
+	//確認ウィンドウの戻る文章を指定
+	back_moji = '<font size="3">内容に間違いはありませんか？<br>訂正したい場合は戻るボタンを押して下さい。<\/font>';
+
+	//確認ウィンドウの送信ボタン名を指定
+	button1 = '送る';
+
+	//確認ウィンドウの戻るボタン名を指定
+	button2 = '戻る';
+
+	//確認ウィンドウの横幅を指定
+	win_w = 600;
+
+	//確認ウィンドウの縦の高さを指定
+	win_h = 500;
+
+
+	data = new Array();
+	mojis = '';
+	th_design = ' align="' + table_th_align + '" bgcolor="' + th_bgcolor + '"><font color="' + th_textcolor + '" size="' + th_textsize + '">';
+	td_design = ' bgcolor="' + td_bgcolor + '"><font color="' + td_textcolor + '" size="' + td_textsize + '">';
+	function MailCheck()
+		{
+		errors = -1;
+		error_txt = "";
+		data = new Array();
+		all_input_len = 0;
+		for(i = 0; i < my_title.length; i++)
+			{
+			data[i] = '';
+			temp1 = new Array();
+			temp1 = my_value[i].split(",");
+			all_input_len += temp1.length;
+			}
+
+		k = 0;
+		for(i = 0; i < all_input_len; i++)
+			{
+			if(my_kind[k] == 0 || my_kind[k] == 3)
+				{
+				data[k] = document.form1.elements[i].value;
+				}
+			else if(my_kind[k] == 1)
+				{
+				temp1 = new Array();
+				temp1 = my_value[k].split(",");
+				for(j = i; j < i + temp1.length; j++)
+					{
+					if(document.form1.elements[j].checked == true)
+						{
+						data[k] = document.form1.elements[j].value;
+						break;
+						}
+					}
+				i += temp1.length - 1;
+				delete temp1;
+				}
+			else if(my_kind[k] == 2)
+				{
+				temp1 = new Array();
+				temp1 = my_value[k].split(",");
+				data[k] = document.form1.elements[i].options[document.form1.elements[i].selectedIndex].value;
+				delete temp1;
+				}
+			k++;
+			}
+
+		for(i = 0; i < my_title.length; i++)
+			{
+			if(my_kind[i].length == 0 || my_kind[k] == 3)
+				{
+				if(my_property[i] == 1 || my_property[i] == 3 || my_property[i] == 5 || my_property[i] == 7)
+					{
+					errors = i;
+					error_txt = my_title[i] + "が入力されていません。";
+					break;
+					}
+				}
+			else if((my_property[i] == 2 || my_property[i] == 3) && data[i].length > 0 && data[i].match(/\D/))
+				{
+				errors = i;
+				error_txt = my_title[i] + "の値が不正です。";
+				break;
+				}
+			else if((my_property[i] == 4 || my_property[i] == 5) && data[i].length > 0 && data[i].match(/\W/))
+				{
+				errors = i;
+				error_txt = my_title[i] + "の値が不正です。";
+				break;
+				}
+			else if((my_property[i] == 6 || my_property[i] == 7) && data[i].length > 0 && data[i].match(/\W/))
+				{
+				kekka = 0;
+				for(j = 0; j < data[i].length; j++)
+					{
+					dore = escape(data[i].charAt(j));
+					if(navigator.appName.indexOf("Netscape") != -1)
+						{
+						if(dore.length > 3 && dore.indexOf("%") != -1)kekka++;
+						}
+					else 
+						{
+						if(dore.indexOf("%uFF") != -1 && '0x' + dore.substring(2 , dore.length) < 0xFF60)kekka++;
+						else if(data[i].match(/\W/g) != null && dore.length == 6)kekka++;
+						}
+					}
+				if(kekka > 0)
+					{
+					errors = i;
+					error_txt = my_title[i] + "の値が不正です。";
+					break;
+					}
+				}
+
+			if(data[i].length < 1 || data[i] == '')data[i] = "<br>";
+			}
+
+		if(errors != -1)
+			{
+			alert(error_txt);
+			}
+
+		else
+			{
+			mojis = '<html>\n<head>\n<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">\n';
+			mojis += '<title>送信内容確認画面<\/title>\n<script language="JavaScript">\n';
+			mojis += 'function MailSend(){window.opener.document.form1.submit();window.close();}\n';
+			mojis += 'function PageBack(){window.opener.focus();window.close();}\n';
+			mojis += '<\/script>\n<\/head>\n';
+			mojis += '<body text="'+text_color+'" bgcolor="'+bg_color+'" link="'+link_color+'" vlink="'+vlink_color+'" alink="'+alink_color+'">\n';
+			mojis += '<table width="100%" align="' + table_align + '" bgcolor="' + table_bgcolor + '" border="' + table_border + '" cellspacing="' + table_cellspacing + '" cellpadding="' + table_cellpadding + '">\n';
+
+			for(i = 0; i < my_title.length; i++)
+				{
+				mojis += '<tr>\n';
+				mojis += '<th width="30%"' + th_design + my_title[i] + '<\/font><\/th>\n';
+				mojis += '<td' + td_design + data[i] + '<\/font><\/td>\n';
+				mojis += '<\/tr>\n';
+				}
+
+			mojis += '<tr>\n';
+			mojis += '<td colspan="2" align="center">\n';
+			mojis += '<form name="you_form">\n';
+			mojis += '<input type="button" onClick="MailSend();" name="ok" value="' + button1 + '">\n';
+			mojis += '　　<input type="button" onClick="PageBack();" name="no" value="' + button2 + '">\n<\/form>\n';
+			mojis += '<\/td>\n';
+			mojis += '<\/tr>\n';
+			mojis += '<\/table>\n<br clear="all">\n';
+
+			mojis += '<div align=center>\n'+back_moji+'<\/div><\/body><\/html>\n';
+
+			wins = 'width='+win_w+',height='+win_w+',scrollbars=yes';
+			mado = window.open("" , "" , wins);
+			mado.document.open();
+			mado.document.write(mojis);
+			mado.document.close();
+			}
+		}
+
+	function StartFormWrite()
+		{
+		mojis = '<body text="' + text_color + '" bgcolor="' + bg_color + '" link="' + link_color + '" vlink="' + vlink_color + '" alink="' + alink_color + '">\n';
+		mojis += '<table align="' + table_align + '" bgcolor="' + table_bgcolor + '" border="' + table_border + '" cellspacing="' + table_cellspacing + '" cellpadding="' + table_cellpadding + '">\n';
+		mojis += '<form name="form1" method="post" enctype="text/plain" action="mailto:' + mail_address + '?Subject=' + mail_title + '">\n';
+
+		for(i = 0; i < my_title.length; i++)
+			{
+			mojis += '<tr>\n';
+			mojis += '<th' + th_design + my_title[i] + '<\/font><\/th>\n';
+
+			if(my_kind[i] == 0)
+				{
+				mojis += '<td' + td_design + '<input type="text" name="' + my_title[i] + '" size="30"><\/font><\/td><\/tr>\n';
+				}
+			else if(my_kind[i] == 1)
+				{
+				mojis += '<td' + td_design + '\n';
+				temp1 = new Array();
+				temp1 = my_value[i].split(",");
+				for(j = 0; j < temp1.length; j++)
+					{
+					mojis += '<input type="radio" name="' + my_title[i] + '" value="' + temp1[j] + '">' + temp1[j];
+					}
+				mojis += '<\/font><\/td>\n';
+				}
+			else if(my_kind[i] == 2)
+				{
+				mojis += '<td' + td_design + '<select name="' + my_title[i] + '">\n';
+				temp1 = new Array();
+				temp1 = my_value[i].split(",");
+				for(j = 0; j < temp1.length; j++)
+					{
+					mojis += '<option value="' + temp1[j] + '">' + temp1[j];
+					}
+				mojis += '<\/select><\/font><\/td>\n';
+				}
+			else 
+				{
+				mojis += '<td' + td_design + '<textarea name="' + my_title[i] + '" cols="40" rows="5"><\/textarea><\/font><\/td><\/tr>\n';
+				}
+			mojis += '<\/tr>\n';
+			}
+
+		mojis += '<tr>\n';
+		mojis += '<td colspan="2" align="center">\n';
+		mojis += '<input type="button" value="確認" onClick="MailCheck();" name="kaku">\n';
+		mojis += '<\/td>\n';
+		mojis += '<\/tr>\n';
+		mojis += '<\/form><\/table>\n';
+		document.write(mojis);
+		}
+
+//-->
+</script>
+
+</head>
+
+<script language="JavaScript">
+<!--//Copyright (C) WEST MiRa http://www.west-mira.jp
+
+StartFormWrite();
+
+//-->
+</script>
+<noscript><body></noscript>
+
+</body></html>
