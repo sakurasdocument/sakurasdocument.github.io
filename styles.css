@@ -1,0 +1,88 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4 {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background: #ddd;
+	height: 65px;
+	width: 100%;
+}
+
+.logo {
+	line-height: 65px;
+	font-family: fantasy;
+	font-size: 34px;
+	padding-left: 20px;
+}
+
+.todo {
+	
+	height: 500px;
+	width: 900px;
+	margin-left: 20px;
+	float: left;
+}
+
+.todo h1 {
+	font-size: 45px;
+}
+
+.todo ul li {
+	list-style: none;
+}
+
+.todo ul {
+	margin: 0;
+	font-size: 30px;
+	height: 400px;
+}
+
+.charaarea {
+	border: 1px solid #ddd;
+	height: 500px;
+	width: 450px;
+	float: right;
+	margin-right: 20px;
+	background-image: url(haikei.jpeg);
+	background-size: cover;
+}
+
+.text {
+	padding: 10px;
+	font-size: 30px;
+}
+
+.submit {
+	font-size: 30px;
+	height: 60px;
+	border-radius: 10px;
+	width: 100px;
+}
+
+.icon {
+	color: blue;
+	cursor: pointer;
+}
+
+.check {
+	width: 24px;
+	height: 24px;
+}
+
+.purge {
+	font-size: 20px;
+	cursor: pointer;
+}
+
+#main {
+	width: 300px;
+	display: block;
+	padding-top: 150px;
+	margin: auto;
+}
