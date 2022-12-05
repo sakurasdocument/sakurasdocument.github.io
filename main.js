@@ -45,8 +45,48 @@
 		}
 	});
 	
+	
+	
+	
 	const sakuraImage = document.getElementById('main');
 	let currentIndex = 0;
+	
+	function stand() {
+		const sakuraStand = [
+		  'frame_00_delay-0.06s.gif',
+			'frame_01_delay-0.06s.gif',
+			'frame_02_delay-0.06s.gif',
+			'frame_03_delay-0.06s.gif',
+			'frame_04_delay-0.06s.gif',
+			'frame_05_delay-0.06s.gif',
+			'frame_06_delay-0.06s.gif',
+			'frame_07_delay-0.06s.gif',
+			'frame_08_delay-0.06s.gif',
+			'frame_09_delay-0.06s.gif',
+			'frame_10_delay-0.06s.gif',
+			'frame_11_delay-0.06s.gif',
+			'frame_12_delay-0.06s.gif',
+			'frame_13_delay-0.06s.gif',
+			'frame_14_delay-0.06s.gif',
+			'frame_15_delay-0.06s.gif',
+			'frame_16_delay-0.06s.gif',
+			'frame_17_delay-0.06s.gif',
+			'frame_18_delay-0.06s.gif',
+			'frame_19_delay-0.06s.gif',
+			'frame_20_delay-0.06s.gif',
+			'frame_21_delay-0.06s.gif',
+			'frame_22_delay-0.06s.gif',
+			'frame_23_delay-0.06s.gif',
+	  ];
+		sakuraImage.src = sakuraStand[currentIndex];
+		currentIndex++;
+		if(currentIndex === sakuraStand.length) {
+			currentIndex = 0;
+		}
+		setTimeout(() => {
+			stand();
+		},100);
+	}
 	
 	
 	function win() {
@@ -67,6 +107,14 @@
 			win();
 		},100);
 	}
-	win();
 	
+	function action(e) {
+		if(vm.todos.length < 3) {
+			win();
+		}else{
+			stand();
+		}
+	}
+	
+	action();
 }
