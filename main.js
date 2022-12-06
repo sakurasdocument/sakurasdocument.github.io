@@ -117,4 +117,34 @@
 	}
 	
 	action();
+	
+	function initMap() {
+		let target = document.getElementById('target');
+		if(!navigator.geolocation) {
+			alert('Geolocation not supported');
+			return;
+		}
+		
+		navigator.geolocation.getCurrentPosition(function(position) {
+			new google.maps.Map(target, {
+				center: {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude,
+				},
+				zoom: 15
+			});
+		}, function() {
+			alert('Geolocation failed');
+			return;
+		});
+		
+		/*map.addListener('click', function(e) {
+			console.log(e.latLng.lat());
+			console.log(e.latLng.lng());
+			this.panTo(e.latLng);
+		});*/
+		
+	
+	}
+	initMap();
 }

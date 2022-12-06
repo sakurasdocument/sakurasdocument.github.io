@@ -40,6 +40,7 @@ header {
 
 .todo ul li {
 	list-style: none;
+	font-size: 40px;
 }
 
 .todo ul {
@@ -59,15 +60,17 @@ header {
 }
 
 .text {
-	padding: 5px;
-	font-size: 15px;
+	padding: 8px;
+	font-size: 40px;
+	height: 60px;
+	width: 400px;
 }
 
 .submit {
-	font-size: 20px;
-	height: 30px;
+	font-size: 40px;
+	height: 60px;
 	border-radius: 10px;
-	width: 50px;
+	width: 120px;
 }
 
 .icon {
@@ -90,4 +93,12 @@ header {
 	display: block;
 	padding-top: 150px;
 	margin: auto;
+}
+
+#target {
+	width: 800px;
+	height: 600px;
+	position: absolute;
+	top: 90px;
+	left: 130px
 }
