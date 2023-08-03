@@ -87,16 +87,16 @@ function initMap() {
 
             for(i = 0; i < enemys.length; i++) {
                 if(enemys[i].lat < sakuraLat) {
-                    enemys[i].lat = enemys[i].lat + 0.01;
+                    enemys[i].lat = enemys[i].lat + 0.001;
                 }
                 if(enemys[i].lat > sakuraLat) {
-                    enemys[i].lat = enemys[i].lat - 0.01;
+                    enemys[i].lat = enemys[i].lat - 0.001;
                 }
                 if(enemys[i].lng < sakuraLng) {
-                    enemys[i].lng = enemys[i].lng + 0.01;
+                    enemys[i].lng = enemys[i].lng + 0.001;
                 }
                 if(enemys[i].lng > sakuraLng) {
-                    enemys[i].lng = enemys[i].lng - 0.01;
+                    enemys[i].lng = enemys[i].lng - 0.001;
                 }
             }
 
