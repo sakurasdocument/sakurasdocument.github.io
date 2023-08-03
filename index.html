@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>SW</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+    <body>
+        <main>
+            <div class="status">
+                <img src="IMG_2154.JPG">
+                <div id="hp"></div>
+            </div>
+
+            <ul class="enemyStock"></ul>
+
+            <div class="sakuraArea">
+                <img src="IMG_1935.GIF">
+            </div>
+            <div id="target">
+            </div>
+
+            <div id="todo">
+                <h1>
+                    <button v-on:click="purge">Purge</button>
+                    My Todos
+                    <span class="info">({{ remaining }}/ {{ todos.length }})</span>
+                </h1>
+                <ul v-if="todos.length">
+                    <li class="todos" v-for="(todo, index) in todos">
+                        <input type="checkbox" v-model="todo.isDone">
+                        <span v-bind:class="{done: todo.isDone}">
+                        {{ todo.title }}
+                        </span>
+                        <span class="command" @click="deleteItem(index)">[x]</span>
+                    </li>
+                </ul>
+                <ul v-else>
+                    <li class="nothing">な〜んもないよ？</li>
+                </ul>
+                <form class="form" v-on:submit.prevent="addItem">
+                    <input type="text" v-model="newItem">
+                    <input type="submit" value="add">
+                </form>
+            </div>
+
+        </main>
+        <footer>
+
+        </footer>
+        <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key_AIzaSyAB9wcrectlun7gsgAlQRtELdqN1pVurA0&callback=initMap" async defer></script>
+        <script src="main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    </body>
+</html>
