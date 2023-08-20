@@ -32,6 +32,19 @@ h1, h2, h3 {
     float: right;
 }
 
+#waite {
+    background: white;
+    height: 65px;
+    line-height: 65px;
+    left: 130px;
+    position: absolute;
+    z-index: 10000;
+    top: 90px;
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
 .sakuraArea {
     width: 300px;
     height: 400px;
