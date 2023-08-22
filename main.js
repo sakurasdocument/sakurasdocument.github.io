@@ -47,6 +47,7 @@ function initMap() {
         }
 
 
+        const time = 60000;
         let enemys = [];
         let enemyStock = [];
         enemyStock = enemyStock.concat(JSON.parse(localStorage.getItem('enemyStock')) || []);
@@ -70,24 +71,28 @@ function initMap() {
                         lat: 36.41194,
                         lng: 139.89193,
                         img: 'norimaro-stand.GIF',
+                        hit:1
                     },
                     {
                         name: '清原南公園',
                         lat: 36.53694,
                         lng: 139.98688,
                         img: 'norimaro-stand.GIF',
+                        hit:2
                     },
                     {
                         name: '市貝町北運動場',
                         lat: 36.58048,
                         lng: 140.11979,
                         img: 'shuma-stand.GIF',
+                        hit:1
                     },
                     {
                         name: '生きがいの森',
                         lat: 36.59720,
                         lng: 139.76889,
                         img: 'shuma-stand.GIF',
+                        hit:1
                     },
                 ];
                 const n = Math.floor(Math.random() * source.length);
@@ -103,7 +108,7 @@ function initMap() {
         let startTime = d - elapsedTime;
         elapsedTime = Date.now();
         localStorage.setItem('elapsedTime', JSON.stringify(elapsedTime));
-        let s = Math.floor(startTime/10000);
+        let s = Math.floor(startTime/time);
 
 
 
@@ -150,6 +155,8 @@ function initMap() {
 
 
             }
+
+            enemyPush();
         }
 
             console.log(enemyStock);
@@ -172,39 +179,67 @@ function initMap() {
         console.log(startTime);
         console.log(elapsedTime);
         */
-        let sakuralife;
 
-        sakuralife = 500;
+        let sakuraLife = 500;
+        const sakuraArea = document.querySelector('.sakuraArea');
+        const sakuraImg = document.createElement('img');
+        sakuraImg.src = 'IMG_1935.GIF';
+        while(sakuraArea.firstChild) {
+            sakuraArea.removeChild(sakuraArea.firstChild);
+        }
+        sakuraArea.appendChild(sakuraImg);
+        
 
+        sakuraLife = JSON.parse(localStorage.getItem('sakuraLife'));
+        if(sakuraLife >= 500) {
+            sakuraLife = 500;
+        }
+        if(sakuraLife < 400) {
+            sakuraImg.src = 'IMG_1941.GIF';
+        }
+        if(sakuraLife < 200) {
+            sakuraImg.src = 'IMG_4038.GIF';
+        }
+        if(sakuraLife <= 0) {
+            sakuraLife = 0;
+            /*enemyStock = [];*/
+        }
         let hp = document.getElementById('hp');
-        hp.style.width = sakuralife + 'px';
+        hp.style.width = sakuraLife + 'px';
+        let life = document.getElementById('life');
+        life.textContent = sakuraLife;
 
         const waite = document.getElementById('waite');
         waite.textContent = 'お待ちかね数♡:' + enemyStock.length;
 
 
-        const enemysImg = [
-            'shuma-stand.GIF',
-            'norimaro-stand.GIF'
-        ];
+        
 
+        
         for(let i = 0; i < enemyStock.length; i++) {
             const img = document.createElement('img');
             img.src = enemyStock[i].img;
-
+    
             const li = document.createElement('li');
             li.appendChild(img);
-
             document.querySelector('.enemyStock').appendChild(li);
+            for(let i = 0; i < s; i++) {
+              sakuraLife = sakuraLife - enemyStock[i].hit;
+            }
         }
+
+
+            localStorage.setItem('sakuraLife', JSON.stringify(sakuraLife));
+        
         
 
 
             setTimeout(() => {
                 pushEnemy();
-            },10000);
+            },time);
             console.log(enemys);
             console.log(enemys.length);
+            console.log(sakuraLife);
         }
 
         pushEnemy();
@@ -253,6 +288,10 @@ function initMap() {
                 deleteItem: function(index) {
                     if(confirm('まっ☆こ〜んなとこだね！')) {
                       this.todos.splice(index, 1);
+                      enemyStock.splice(0, 1);
+                      sakuraLife = JSON.parse(localStorage.getItem('sakuraLife'));
+                      sakuraLife =  sakuraLife + 100;
+                      localStorage.setItem('sakuraLife', JSON.stringify(sakuraLife));
                     }
                     
                 },
