@@ -47,7 +47,7 @@ function initMap() {
         }
 
 
-        const time = 60000;
+        const time = 10000;
         let enemys = [];
         let enemyStock = [];
         enemyStock = enemyStock.concat(JSON.parse(localStorage.getItem('enemyStock')) || []);
@@ -121,31 +121,31 @@ function initMap() {
         for(let t = 0; t < s; t++) {
             for(i = 0; i < enemys.length; i++) {
                 if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng) {
-                    enemys[i].lat = enemys[i].lat + (0.001 * s);
-                    enemys[i].lng = enemys[i].lng + (0.001 * s);
-                    if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng){
+                    enemys[i].lat = enemys[i].lat + (0.01 * s);
+                    enemys[i].lng = enemys[i].lng + (0.01 * s);
+                    if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng && enemyStock.length < 5){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }else
                 if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng) {
-                    enemys[i].lat = enemys[i].lat + (0.001 * s);
-                    enemys[i].lng = enemys[i].lng - (0.001 * s); 
-                    if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng){
+                    enemys[i].lat = enemys[i].lat + (0.01 * s);
+                    enemys[i].lng = enemys[i].lng - (0.01 * s); 
+                    if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng && enemyStock.length < 5){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }  
                 }else
 
                 if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng) {
-                    enemys[i].lat = enemys[i].lat - (0.001 * s);
-                    enemys[i].lng = enemys[i].lng + (0.001 * s); 
-                    if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng){
+                    enemys[i].lat = enemys[i].lat - (0.01 * s);
+                    enemys[i].lng = enemys[i].lng + (0.01 * s); 
+                    if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng && enemyStock.length < 5){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }else
                 if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng) {
-                    enemys[i].lat = enemys[i].lat - (0.001 * s);
-                    enemys[i].lng = enemys[i].lng - (0.001 * s); 
-                    if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng){
+                    enemys[i].lat = enemys[i].lat - (0.01 * s);
+                    enemys[i].lng = enemys[i].lng - (0.01 * s); 
+                    if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng && enemyStock.length < 5){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }
@@ -190,7 +190,15 @@ function initMap() {
         sakuraArea.appendChild(sakuraImg);
         
 
+        for(let i = 0; i < s; i++) {
         sakuraLife = JSON.parse(localStorage.getItem('sakuraLife'));
+        for(let t = 0; t < enemyStock.length; t++) {
+            if(sakuraLife === null) {
+                sakuraLife  = 500;
+                
+            }
+            sakuraLife = sakuraLife - enemyStock[t].hit;
+        }
         if(sakuraLife >= 500) {
             sakuraLife = 500;
         }
@@ -200,10 +208,9 @@ function initMap() {
         if(sakuraLife < 200) {
             sakuraImg.src = 'IMG_4038.GIF';
         }
-        if(sakuraLife <= 0) {
-            sakuraLife = 0;
-            /*enemyStock = [];*/
-        }
+        
+        localStorage.setItem('sakuraLife', JSON.stringify(sakuraLife));
+    }
         let hp = document.getElementById('hp');
         hp.style.width = sakuraLife + 'px';
         let life = document.getElementById('life');
@@ -223,13 +230,11 @@ function initMap() {
             const li = document.createElement('li');
             li.appendChild(img);
             document.querySelector('.enemyStock').appendChild(li);
-            for(let i = 0; i < s; i++) {
-              sakuraLife = sakuraLife - enemyStock[i].hit;
-            }
+            
         }
 
 
-            localStorage.setItem('sakuraLife', JSON.stringify(sakuraLife));
+            
         
         
 
