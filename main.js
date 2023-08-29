@@ -47,7 +47,6 @@ function initMap() {
         }
 
 
-        const time = 10000;
         let enemys = [];
         let enemyStock = [];
         enemyStock = enemyStock.concat(JSON.parse(localStorage.getItem('enemyStock')) || []);
@@ -71,28 +70,24 @@ function initMap() {
                         lat: 36.41194,
                         lng: 139.89193,
                         img: 'norimaro-stand.GIF',
-                        hit:1
                     },
                     {
                         name: '清原南公園',
                         lat: 36.53694,
                         lng: 139.98688,
                         img: 'norimaro-stand.GIF',
-                        hit:2
                     },
                     {
                         name: '市貝町北運動場',
                         lat: 36.58048,
                         lng: 140.11979,
                         img: 'shuma-stand.GIF',
-                        hit:1
                     },
                     {
                         name: '生きがいの森',
                         lat: 36.59720,
                         lng: 139.76889,
                         img: 'shuma-stand.GIF',
-                        hit:1
                     },
                 ];
                 const n = Math.floor(Math.random() * source.length);
@@ -108,7 +103,7 @@ function initMap() {
         let startTime = d - elapsedTime;
         elapsedTime = Date.now();
         localStorage.setItem('elapsedTime', JSON.stringify(elapsedTime));
-        let s = Math.floor(startTime/time);
+        let s = Math.floor(startTime/10000);
 
 
 
@@ -121,31 +116,31 @@ function initMap() {
         for(let t = 0; t < s; t++) {
             for(i = 0; i < enemys.length; i++) {
                 if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng) {
-                    enemys[i].lat = enemys[i].lat + (0.01 * s);
-                    enemys[i].lng = enemys[i].lng + (0.01 * s);
-                    if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng && enemyStock.length < 5){
+                    enemys[i].lat = enemys[i].lat + (0.0001 * s);
+                    enemys[i].lng = enemys[i].lng + (0.0001 * s);
+                    if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }else
                 if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng) {
-                    enemys[i].lat = enemys[i].lat + (0.01 * s);
-                    enemys[i].lng = enemys[i].lng - (0.01 * s); 
-                    if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng && enemyStock.length < 5){
+                    enemys[i].lat = enemys[i].lat + (0.0001 * s);
+                    enemys[i].lng = enemys[i].lng - (0.0001 * s); 
+                    if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }  
                 }else
 
                 if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng) {
-                    enemys[i].lat = enemys[i].lat - (0.01 * s);
-                    enemys[i].lng = enemys[i].lng + (0.01 * s); 
-                    if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng && enemyStock.length < 5){
+                    enemys[i].lat = enemys[i].lat - (0.0001 * s);
+                    enemys[i].lng = enemys[i].lng + (0.0001 * s); 
+                    if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }else
                 if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng) {
-                    enemys[i].lat = enemys[i].lat - (0.01 * s);
-                    enemys[i].lng = enemys[i].lng - (0.01 * s); 
-                    if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng && enemyStock.length < 5){
+                    enemys[i].lat = enemys[i].lat - (0.0001 * s);
+                    enemys[i].lng = enemys[i].lng - (0.0001 * s); 
+                    if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }
@@ -180,7 +175,6 @@ function initMap() {
         console.log(elapsedTime);
         */
 
-        let sakuraLife = 500;
         const sakuraArea = document.querySelector('.sakuraArea');
         const sakuraImg = document.createElement('img');
         sakuraImg.src = 'IMG_1935.GIF';
@@ -190,61 +184,36 @@ function initMap() {
         sakuraArea.appendChild(sakuraImg);
         
 
-        for(let i = 0; i < s; i++) {
-        sakuraLife = JSON.parse(localStorage.getItem('sakuraLife'));
-        for(let t = 0; t < enemyStock.length; t++) {
-            if(sakuraLife === null) {
-                sakuraLife  = 500;
-                
-            }
-            sakuraLife = sakuraLife - enemyStock[t].hit;
-        }
-        if(sakuraLife >= 500) {
-            sakuraLife = 500;
-        }
-        if(sakuraLife < 400) {
-            sakuraImg.src = 'IMG_1941.GIF';
-        }
-        if(sakuraLife < 200) {
-            sakuraImg.src = 'IMG_4038.GIF';
-        }
-        
-        localStorage.setItem('sakuraLife', JSON.stringify(sakuraLife));
-    }
+        let sakuraLife = 500;
         let hp = document.getElementById('hp');
         hp.style.width = sakuraLife + 'px';
-        let life = document.getElementById('life');
-        life.textContent = sakuraLife;
+        
 
         const waite = document.getElementById('waite');
         waite.textContent = 'お待ちかね数♡:' + enemyStock.length;
 
 
         
-
-        
         for(let i = 0; i < enemyStock.length; i++) {
             const img = document.createElement('img');
             img.src = enemyStock[i].img;
-    
+
             const li = document.createElement('li');
             li.appendChild(img);
+
             document.querySelector('.enemyStock').appendChild(li);
-            
         }
 
 
-            
         
         
 
 
             setTimeout(() => {
                 pushEnemy();
-            },time);
+            },10000);
             console.log(enemys);
             console.log(enemys.length);
-            console.log(sakuraLife);
         }
 
         pushEnemy();
@@ -293,11 +262,8 @@ function initMap() {
                 deleteItem: function(index) {
                     if(confirm('まっ☆こ〜んなとこだね！')) {
                       this.todos.splice(index, 1);
-                      enemyStock.splice(0, 1);
-                      sakuraLife = JSON.parse(localStorage.getItem('sakuraLife'));
-                      sakuraLife =  sakuraLife + 100;
-                      localStorage.setItem('sakuraLife', JSON.stringify(sakuraLife));
                     }
+                    enemyStock.splice(0,1);
                     
                 },
                 purge: function() {
