@@ -6,6 +6,7 @@ function initMap() {
         let sakuraLng = pos.coords.longitude;
         let sakura = {lat: sakuraLat, lng: sakuraLng};
 
+
         map = new google.maps.Map(target, {
             center: sakura,
             zoom:15
@@ -21,6 +22,8 @@ function initMap() {
             },
 
         });
+
+        
 
         /*↓敵を出現させるメソッド*/
         class Enemy {
@@ -116,30 +119,30 @@ function initMap() {
         for(let t = 0; t < s; t++) {
             for(i = 0; i < enemys.length; i++) {
                 if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng) {
-                    enemys[i].lat = enemys[i].lat + (0.0001 * s);
-                    enemys[i].lng = enemys[i].lng + (0.0001 * s);
+                    enemys[i].lat = enemys[i].lat + (0.00001 * s);
+                    enemys[i].lng = enemys[i].lng + (0.00001 * s);
                     if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }else
                 if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng) {
-                    enemys[i].lat = enemys[i].lat + (0.0001 * s);
-                    enemys[i].lng = enemys[i].lng - (0.0001 * s); 
+                    enemys[i].lat = enemys[i].lat + (0.00001 * s);
+                    enemys[i].lng = enemys[i].lng - (0.00001 * s); 
                     if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }  
                 }else
 
                 if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng) {
-                    enemys[i].lat = enemys[i].lat - (0.0001 * s);
-                    enemys[i].lng = enemys[i].lng + (0.0001 * s); 
+                    enemys[i].lat = enemys[i].lat - (0.00001 * s);
+                    enemys[i].lng = enemys[i].lng + (0.00001 * s); 
                     if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }else
                 if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng) {
-                    enemys[i].lat = enemys[i].lat - (0.0001 * s);
-                    enemys[i].lng = enemys[i].lng - (0.0001 * s); 
+                    enemys[i].lat = enemys[i].lat - (0.00001 * s);
+                    enemys[i].lng = enemys[i].lng - (0.00001 * s); 
                     if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
@@ -285,6 +288,12 @@ function initMap() {
                 }
             },
         });  
+
+        const reset = document.getElementById('reset');
+        reset.addEventListener('click', () => {
+            enemyStock = [];
+
+        });
     }
 
     
