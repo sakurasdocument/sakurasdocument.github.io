@@ -9,9 +9,12 @@ function initMap() {
 
         map = new google.maps.Map(target, {
             center: sakura,
-            zoom:15
+            zoom:15,
+            draggable: true
 
         });
+
+
 
         sakura = new google.maps.Marker({
             position: sakura,
@@ -22,6 +25,52 @@ function initMap() {
             },
 
         });
+
+        base1 = new google.maps.Marker({
+            position: {lat: 36.41194, lng: 139.89193},
+            map: map,
+            icon: {
+                url: 'house_5.gif',
+                scaledSize: new google.maps.Size(40, 40)
+            },
+
+        });
+
+        base2 = new google.maps.Marker({
+            position: {lat: 36.53694, lng: 139.98688},
+            map: map,
+            icon: {
+                url: 'house_5.gif',
+                scaledSize: new google.maps.Size(40, 40)
+            },
+
+        });
+
+        base3 = new google.maps.Marker({
+            position: {lat: 36.58048, lng: 140.11979},
+            map: map,
+            icon: {
+                url: 'house_5.gif',
+                scaledSize: new google.maps.Size(40, 40)
+            },
+
+        });
+
+        base4 = new google.maps.Marker({
+            position: {lat: 36.59720, lng: 139.76889},
+            map: map,
+            icon: {
+                url: 'house_5.gif',
+                scaledSize: new google.maps.Size(40, 40)
+            },
+
+        });
+
+        
+
+        
+
+
 
         
 
@@ -95,6 +144,9 @@ function initMap() {
                 ];
                 const n = Math.floor(Math.random() * source.length);
                 enemys[enemys.length] = source.splice(n, 1)[0];
+
+                
+                
             }
             enemyPush();
 
@@ -119,30 +171,30 @@ function initMap() {
         for(let t = 0; t < s; t++) {
             for(i = 0; i < enemys.length; i++) {
                 if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng) {
-                    enemys[i].lat = enemys[i].lat + (0.000001 * s);
-                    enemys[i].lng = enemys[i].lng + (0.000001 * s);
+                    enemys[i].lat = enemys[i].lat + (0.0000001 * s);
+                    enemys[i].lng = enemys[i].lng + (0.0000001 * s);
                     if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }else
                 if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng) {
-                    enemys[i].lat = enemys[i].lat + (0.000001 * s);
-                    enemys[i].lng = enemys[i].lng - (0.000001 * s); 
+                    enemys[i].lat = enemys[i].lat + (0.0000001 * s);
+                    enemys[i].lng = enemys[i].lng - (0.0000001 * s); 
                     if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }  
                 }else
 
                 if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng) {
-                    enemys[i].lat = enemys[i].lat - (0.000001 * s);
-                    enemys[i].lng = enemys[i].lng + (0.000001 * s); 
+                    enemys[i].lat = enemys[i].lat - (0.0000001 * s);
+                    enemys[i].lng = enemys[i].lng + (0.0000001 * s); 
                     if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }else
                 if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng) {
-                    enemys[i].lat = enemys[i].lat - (0.000001 * s);
-                    enemys[i].lng = enemys[i].lng - (0.000001 * s); 
+                    enemys[i].lat = enemys[i].lat - (0.0000001 * s);
+                    enemys[i].lng = enemys[i].lng - (0.0000001 * s); 
                     if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
@@ -224,6 +276,8 @@ function initMap() {
         for(i = 0; i < enemys.length; i++) {
             new Enemy(enemys[i].lat, enemys[i].lng, enemys[i].img);
         }
+
+        
 
         
         
