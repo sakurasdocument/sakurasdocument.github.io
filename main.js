@@ -248,7 +248,8 @@ function initMap() {
         waite.textContent = 'お待ちかね数♡:' + enemyStock.length;
 
 
-        
+        /*
+        敵のストックを右上に表示
         for(let i = 0; i < enemyStock.length; i++) {
             const img = document.createElement('img');
             img.src = enemyStock[i].img;
@@ -258,6 +259,7 @@ function initMap() {
 
             document.querySelector('.enemyStock').appendChild(li);
         }
+        */
 
 
         
