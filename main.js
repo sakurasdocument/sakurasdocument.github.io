@@ -167,34 +167,38 @@ function initMap() {
         console.log(elapsedTime);
         console.log(sakuraLat, sakuraLng);
 
+        //let time = 0.0000001;
+        let time = 0.01;
+
+
 
         for(let t = 0; t < s; t++) {
             for(i = 0; i < enemys.length; i++) {
                 if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng) {
-                    enemys[i].lat = enemys[i].lat + (0.0000001 * s);
-                    enemys[i].lng = enemys[i].lng + (0.0000001 * s);
+                    enemys[i].lat = enemys[i].lat + (time * s);
+                    enemys[i].lng = enemys[i].lng + (time * s);
                     if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }else
                 if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng) {
-                    enemys[i].lat = enemys[i].lat + (0.0000001 * s);
-                    enemys[i].lng = enemys[i].lng - (0.0000001 * s); 
+                    enemys[i].lat = enemys[i].lat + (time * s);
+                    enemys[i].lng = enemys[i].lng - (time * s); 
                     if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }  
                 }else
 
                 if(enemys[i].lat > sakuraLat && enemys[i].lng < sakuraLng) {
-                    enemys[i].lat = enemys[i].lat - (0.0000001 * s);
-                    enemys[i].lng = enemys[i].lng + (0.0000001 * s); 
+                    enemys[i].lat = enemys[i].lat - (time * s);
+                    enemys[i].lng = enemys[i].lng + (time * s); 
                     if(enemys[i].lat < sakuraLat && enemys[i].lng > sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
                 }else
                 if(enemys[i].lat > sakuraLat && enemys[i].lng > sakuraLng) {
-                    enemys[i].lat = enemys[i].lat - (0.0000001 * s);
-                    enemys[i].lng = enemys[i].lng - (0.0000001 * s); 
+                    enemys[i].lat = enemys[i].lat - (time * s);
+                    enemys[i].lng = enemys[i].lng - (time * s); 
                     if(enemys[i].lat < sakuraLat && enemys[i].lng < sakuraLng){
                         enemyStock.push(enemys.splice(i, 1)[0]);
                     }
@@ -245,11 +249,18 @@ function initMap() {
         
 
         const waite = document.getElementById('waite');
-        waite.textContent = 'お待ちかね数♡:' + enemyStock.length;
+        waite.textContent = '待機:' + enemyStock.length;
 
 
-        /*
-        敵のストックを右上に表示
+        
+        //敵のストックを右上に表示
+
+       
+
+        while(document.querySelector('.enemyStock').firstChild) {
+            document.querySelector('.enemyStock').removeChild(document.querySelector('.enemyStock').firstChild);
+        }
+        
         for(let i = 0; i < enemyStock.length; i++) {
             const img = document.createElement('img');
             img.src = enemyStock[i].img;
@@ -259,10 +270,10 @@ function initMap() {
 
             document.querySelector('.enemyStock').appendChild(li);
         }
-        */
 
 
         
+
         
 
 
