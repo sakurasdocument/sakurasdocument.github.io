@@ -67,15 +67,21 @@ h1, h2, h3 {
     left: 15px;
 }
 
+
+
 .enemyStock {
-display: flex;
-position: absolute;
-left: 700px;
-z-index: 10000;
-list-style: none;
-overflow-y: hidden;
-width: 600px;
+    display: flex;
+    position: absolute;
+    left: 700px;
+    z-index: 10000;
+    list-style: none;
+    white-space: nowrap;
+    overflow: auto;
+    text-overflow: ellipsis;
+    width: 600px;
+    background-color: #fff;
 }
+
 
 #todo {
     width: 100%;
