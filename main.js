@@ -172,8 +172,8 @@ function initMap() {
         console.log(elapsedTime);
         console.log(sakuraLat, sakuraLng);
 
-        let time = 0.0000001;
-        //let time = 0.01;
+        //let time = 0.0000001;
+        let time = 0.01;
 
 
 
@@ -241,7 +241,16 @@ function initMap() {
 
         const sakuraArea = document.querySelector('.sakuraArea');
         const sakuraImg = document.createElement('img');
-        sakuraImg.src = 'IMG_1935.GIF';
+        if(sakuraLife >= 300) {
+            sakuraImg.src = 'IMG_1935.GIF';
+        }
+        if(sakuraLife <= 300) {
+            sakuraImg.src = 'IMG_1941.GIF';
+        }
+        if(sakuraLife <= 100) {
+            sakuraImg.src = 'IMG_4038.GIF';
+        }
+        
         while(sakuraArea.firstChild) {
             sakuraArea.removeChild(sakuraArea.firstChild);
         }
