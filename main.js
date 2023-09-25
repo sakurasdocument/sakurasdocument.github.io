@@ -101,6 +101,11 @@ function initMap() {
 
         let enemys = [];
         let enemyStock = [];
+        let sakuraLife = 500;
+        sakuraLife = JSON.parse(localStorage.getItem('sakuraLife'));
+        if(sakuraLife >= 500) {
+            sakuraLife = 500;
+        }
         enemyStock = enemyStock.concat(JSON.parse(localStorage.getItem('enemyStock')) || []);
         enemys = enemys.concat(JSON.parse(localStorage.getItem('enemys')) || []);
         
@@ -167,8 +172,8 @@ function initMap() {
         console.log(elapsedTime);
         console.log(sakuraLat, sakuraLng);
 
-        //let time = 0.0000001;
-        let time = 0.01;
+        let time = 0.0000001;
+        //let time = 0.01;
 
 
 
@@ -243,13 +248,24 @@ function initMap() {
         sakuraArea.appendChild(sakuraImg);
         
 
-        let sakuraLife = 500;
         let hp = document.getElementById('hp');
         hp.style.width = sakuraLife + 'px';
         
+        function sakuraDamege() {
+            if(sakuraLife <= 0) {
+                sakuraLife = 0;
+                return;
+            }
+          sakuraLife = sakuraLife - enemyStock.length * s;
+        }
+
+        sakuraDamege();
+        console.log(sakuraLife);
+        localStorage.setItem("sakuraLife", JSON.stringify(sakuraLife));
+
 
         const waite = document.getElementById('waite');
-        waite.textContent = '待機:' + enemyStock.length;
+        waite.textContent = '待機:' + enemyStock.length ;
 
 
         
@@ -260,7 +276,24 @@ function initMap() {
         while(document.querySelector('.enemyStock').firstChild) {
             document.querySelector('.enemyStock').removeChild(document.querySelector('.enemyStock').firstChild);
         }
+
+        enemyStock.forEach((chara, index) => {
+            const img = document.createElement('img');
+            img.src = chara.img;
+
+            const li = document.createElement('li');
+            li.appendChild(img);
+
+            document.querySelector('.enemyStock').appendChild(li);
+            li.addEventListener('click', () => {
+                
+                console.log(enemyStock[index]);
+
+            });
+
+        });
         
+        /*
         for(let i = 0; i < enemyStock.length; i++) {
             const img = document.createElement('img');
             img.src = enemyStock[i].img;
@@ -270,6 +303,10 @@ function initMap() {
 
             document.querySelector('.enemyStock').appendChild(li);
         }
+        */
+
+
+
 
 
         
@@ -289,6 +326,7 @@ function initMap() {
         for(i = 0; i < enemys.length; i++) {
             new Enemy(enemys[i].lat, enemys[i].lng, enemys[i].img);
         }
+        
 
         
 
@@ -334,7 +372,7 @@ function initMap() {
                       this.todos.splice(index, 1);
                     }
                     enemyStock.splice(0,1);
-                    
+                    sakuraLife = sakuraLife + 50;
                 },
                 purge: function() {
                     if(!confirm('滅殺！！')) {
@@ -361,6 +399,7 @@ function initMap() {
             enemyStock = [];
 
         });
+
     }
 
     
