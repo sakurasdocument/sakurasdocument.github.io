@@ -102,7 +102,7 @@ function initMap() {
         let enemys = [];
         let enemyStock = [];
         let sakuraLife = 500;
-        sakuraLife = JSON.parse(localStorage.getItem('sakuraLife'));
+        sakuraLife = JSON.parse(localStorage.getItem('sakuraLife')) || 500;
         if(sakuraLife >= 500) {
             sakuraLife = 500;
         }
