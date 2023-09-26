@@ -172,8 +172,58 @@ function initMap() {
         console.log(elapsedTime);
         console.log(sakuraLat, sakuraLng);
 
-        //let time = 0.0000001;
-        let time = 0.01;
+        let time = 0.0000001;
+        //let time = 0.01;
+
+        const sakuraArea = document.querySelector('.sakuraArea');
+        const sakuraImg = document.createElement('img');
+        /*if(sakuraLife >= 300) {
+            sakuraImg.src = 'IMG_1935.GIF';
+        }
+        if(sakuraLife <= 300) {
+            sakuraImg.src = 'IMG_1941.GIF';
+        }
+        if(sakuraLife <= 100) {
+            sakuraImg.src = 'IMG_4038.GIF';
+        }
+        
+        while(sakuraArea.firstChild) {
+            sakuraArea.removeChild(sakuraArea.firstChild);
+        }
+        sakuraArea.appendChild(sakuraImg);
+        */
+        
+
+        //let hp = document.getElementById('hp');
+        //hp.style.width = sakuraLife + 'px';
+        
+        function sakuraDamege() {
+            if(sakuraLife <= 0) {
+                sakuraLife = 0;
+                return;
+            }
+          sakuraLife = sakuraLife - enemyStock.length * s;
+          let hp = document.getElementById('hp');
+          hp.style.width = sakuraLife + 'px';
+          if(sakuraLife >= 300) {
+            sakuraImg.src = 'IMG_1935.GIF';
+          }
+          if(sakuraLife <= 300) {
+            sakuraImg.src = 'IMG_1941.GIF';
+          }
+          if(sakuraLife <= 100) {
+            sakuraImg.src = 'IMG_4038.GIF';
+          }
+        
+          while(sakuraArea.firstChild) {
+            sakuraArea.removeChild(sakuraArea.firstChild);
+          }
+          sakuraArea.appendChild(sakuraImg);
+          localStorage.setItem("sakuraLife", JSON.stringify(sakuraLife));
+        }
+
+        
+        
 
 
 
@@ -218,6 +268,10 @@ function initMap() {
             enemyPush();
         }
 
+        sakuraDamege();
+        console.log(sakuraLife);
+
+
             console.log(enemyStock);
             console.log(enemyStock.length);
 
@@ -239,38 +293,7 @@ function initMap() {
         console.log(elapsedTime);
         */
 
-        const sakuraArea = document.querySelector('.sakuraArea');
-        const sakuraImg = document.createElement('img');
-        if(sakuraLife >= 300) {
-            sakuraImg.src = 'IMG_1935.GIF';
-        }
-        if(sakuraLife <= 300) {
-            sakuraImg.src = 'IMG_1941.GIF';
-        }
-        if(sakuraLife <= 100) {
-            sakuraImg.src = 'IMG_4038.GIF';
-        }
         
-        while(sakuraArea.firstChild) {
-            sakuraArea.removeChild(sakuraArea.firstChild);
-        }
-        sakuraArea.appendChild(sakuraImg);
-        
-
-        let hp = document.getElementById('hp');
-        hp.style.width = sakuraLife + 'px';
-        
-        function sakuraDamege() {
-            if(sakuraLife <= 0) {
-                sakuraLife = 0;
-                return;
-            }
-          sakuraLife = sakuraLife - enemyStock.length * s;
-        }
-
-        sakuraDamege();
-        console.log(sakuraLife);
-        localStorage.setItem("sakuraLife", JSON.stringify(sakuraLife));
 
 
         const waite = document.getElementById('waite');
